@@ -5,14 +5,47 @@
                 <el-form-item label="英灵星级"></el-form-item>
                 <el-rate v-model="formData.stars"></el-rate>
                 <el-form-item label="英灵名称 - 中文">
-                    <el-input v-model="formData.name"></el-input>
+                    <el-input v-model="formData.name_cn"></el-input>
                 </el-form-item>
                 <el-form-item label="英灵名称 - 日文">
-                    <el-input v-model="formData.name"></el-input>
+                    <el-input v-model="formData.name_jp"></el-input>
                 </el-form-item>
                 <el-form-item label="英灵名称 - 外文">
-                    <el-input v-model="formData.name"></el-input>
+                    <el-input v-model="formData.name_origin"></el-input>
                 </el-form-item>
+                <el-form-item label="英灵性别"></el-form-item>
+                <el-select v-model="formData.gender" placeholder="请选择性别">
+                    <el-option label="男性" value="male"></el-option>
+                    <el-option label="女性" value="female"></el-option>
+                    <el-option label="???" value="unknown"></el-option>
+                </el-select>
+                
+                <el-form-item label="英灵阵营"></el-form-item>
+                <el-select v-model="formData.alignment" placeholder="请选择阵营">
+                    <el-option label="天" value="sky"></el-option>
+                    <el-option label="地" value="earth"></el-option>
+                    <el-option label="人" value="man"></el-option>
+                    <el-option label="星" value="star"></el-option>
+                    <el-option label="兽" value="beast"></el-option>
+                </el-select>
+
+                <el-form-item label="英灵属性"></el-form-item>
+                <el-select v-model="formData.attribute1" placeholder="请选择第一属性">
+                    <el-option label="秩序" value="lawful"></el-option>
+                    <el-option label="中立" value="neutral"></el-option>
+                    <el-option label="混沌" value="chaotic"></el-option>
+                    <el-option label="无" value="unknown"></el-option>
+                </el-select>
+                <el-select v-model="formData.attribute2" placeholder="请选择第二属性">
+                    <el-option label="善良" value="good"></el-option>
+                    <el-option label="中庸" value="moderation"></el-option>
+                    <el-option label="邪恶" value="evil"></el-option>
+                    <el-option label="疯狂" value="insane"></el-option>
+                    <el-option label="夏天" value="summer"></el-option>
+                    <el-option label="花嫁" value="bride"></el-option>
+                    <el-option label="无" value="unknown"></el-option>
+                </el-select>
+
                 <el-form-item label="英灵职阶"></el-form-item>
                 <div class="class-group">
                     <!-- <div :class="['icon-common','test']" @click="changeClassName('Saber')"></div> -->
@@ -80,13 +113,13 @@
                     </div>
                 </div>
                 <el-form-item label="宝具名称 - 中文">
-                    <el-input v-model="formData.name"></el-input>
+                    <el-input v-model="formData.phantasm_cn"></el-input>
                 </el-form-item>
                 <el-form-item label="宝具名称 - 日文">
-                    <el-input v-model="formData.name"></el-input>
+                    <el-input v-model="formData.phantasm_jp"></el-input>
                 </el-form-item>
                 <el-form-item label="宝具名称 - 外文">
-                    <el-input v-model="formData.name"></el-input>
+                    <el-input v-model="formData.phantasm_origin"></el-input>
                 </el-form-item>
                 <el-form-item label="宝具图标"></el-form-item>
                 <div class="class-group">
@@ -125,6 +158,10 @@ export default {
                 name_cn: '',    //中文名称
                 name_jp: '',    //日文名称
                 name_origin: '',    //外文名称
+                gender: '', //性别
+                alignment: '',  //阵营
+                attribute1: '',  //属性1
+                attribute2: '',  //属性2
                 class: '',  //职阶
                 phantasm_cn: '',  //宝具中文
                 phantasm_jp: '',  //宝具日文
