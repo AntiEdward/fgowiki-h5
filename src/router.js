@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import test from './views/test.vue'
 import heros from './views/heros/heros.vue'
-import addHeros from './views/heros/addHeros.vue'
+import addHero from './views/heros/addHero.vue'
+import editHero from './views/heros/editHero.vue'
 
 
 Vue.use(Router)
@@ -18,8 +19,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'addHeros',
-      component: addHeros
+      name: 'addHero',
+      component: addHero
     },
     {
       path: '/heros',
@@ -27,9 +28,14 @@ export default new Router({
       component: heros
     },
     {
-      path: '/addHeros',
-      name: 'addHeros',
-      component: addHeros
+      path: '/addHero',
+      name: 'addHero',
+      component: addHero
+    },
+    {
+      path: '/editHero',
+      name: 'editHero',
+      component: editHero
     },
   ]
 })

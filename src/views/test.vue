@@ -1,31 +1,8 @@
 <template>
     <div class="home">
-        <iframe 
-            width="560" 
-            height="315" 
-            src="//player.bilibili.com/player.html?aid=824961&cid=1199934&page=1" 
-            scrolling="no" 
-            border="0" 
-            frameborder="no" 
-            framespacing="0" 
-            allowfullscreen="true">
-        </iframe>
-        <iframe 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/mllXxyHTzfg?controls=0" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-        <iframe 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/mllXxyHTzfg" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
+        <el-input v-model="id">{{ id }}</el-input>
+        <el-button @click="findtest1">列表查询</el-button>
+        <el-button @click="findtest2(id)">详情查询</el-button>
     </div>
 </template>
 
@@ -36,6 +13,11 @@ export default {
     name: 'test',
     components: {
         
+    },
+    data(){
+        return{
+            id: ''
+        }
     },
     methods:{
         //测试查询英灵列表
@@ -48,10 +30,15 @@ export default {
             })
         },
         //测试查询英灵详情
-        findtest2() {
+        findtest2(id) {
             let _this = this
-            
-            _this.axios.get('/api/getHeroList').then(res => {
+            let data = {
+                'hero_id': id
+            }
+            console.log(data)
+            _this.axios.get('/api/getHeroDetail', {
+                params:data
+            }).then(res => {
                 const data = res.data
                 console.log(data)
             })

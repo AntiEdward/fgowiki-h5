@@ -221,7 +221,6 @@ export default {
                 this.formData.phantasm_icon = name
             }
         },
-        
     }
 }
 </script>
