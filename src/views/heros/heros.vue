@@ -1,6 +1,6 @@
 <template>
     <div >
-
+        <el-button @click="test">dianwo</el-button>
     </div>
 </template>
 
@@ -13,6 +13,12 @@ export default {
         }
     },
     methods:{
+        test(){
+            const _this = this;
+            _this.axios.get('/api/test').then(res => {
+                console.log(res.data)
+            })
+        },
         getHerosList(){
             
         }

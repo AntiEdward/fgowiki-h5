@@ -2,8 +2,17 @@
     <div class="container">
         <div>
             <el-form ref="form" :model="formData">
+                <el-form-item label="英灵编号">
+                    <el-input v-model="formData.hero_id"></el-input>
+                </el-form-item>
+                <el-form-item label="头像id">
+                    <el-input v-model="formData.icon_id"></el-input>
+                </el-form-item>
                 <el-form-item label="英灵星级"></el-form-item>
                 <el-rate v-model="formData.stars"></el-rate>
+                <el-form-item label="cost消耗">
+                    <el-input v-model="formData.cost"></el-input>
+                </el-form-item>
                 <el-form-item label="英灵名称 - 中文">
                     <el-input v-model="formData.name_cn"></el-input>
                 </el-form-item>
@@ -154,7 +163,10 @@ export default {
     data(){
         return{
             formData:{
-                stars: '',  //星级
+                hero_id: '', //英灵编号
+                icon_id: '', //头像id
+                stars: 0,  //星级
+                cost: '',   //cost消耗
                 name_cn: '',    //中文名称
                 name_jp: '',    //日文名称
                 name_origin: '',    //外文名称
@@ -173,7 +185,24 @@ export default {
     },
     methods:{
         onSubmit() {
-            console.log(this.formData);
+           
+            const _this = this
+            // let data = {
+            //     'hero_id' : _this.formData.hero_id
+            // }
+            // console.log(data);
+            // JSON.stringify(data)
+            _this.axios.post('/api/add', 
+            _this.formData
+            // JSON.stringify(data), 
+            // {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+            )
+            .then(res => {
+                console.log(res)
+            })
+            // _this.axios.get('/api/test').then(res => {
+            //     console.log(res.data)
+            // })
         },
         //修改職階圖標
         changeClassName(name){
@@ -192,11 +221,7 @@ export default {
                 this.formData.phantasm_icon = name
             }
         },
-        findtest() {
-            let _this = this
-            //調用查詢接口
-            //_this.axios.get('/api/posts')
-        }
+        
     }
 }
 </script>
