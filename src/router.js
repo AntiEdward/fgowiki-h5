@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import home from './views/home.vue'
 import test from './views/test.vue'
 import heros from './views/heros/heros.vue'
 import addHero from './views/heros/addHero.vue'
@@ -19,8 +21,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'addHero',
-      component: addHero
+      name: 'home',
+      component: home
     },
     {
       path: '/heros',

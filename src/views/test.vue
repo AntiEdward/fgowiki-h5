@@ -3,6 +3,12 @@
         <el-input v-model="id">{{ id }}</el-input>
         <el-button @click="findtest1">列表查询</el-button>
         <el-button @click="findtest2(id)">详情查询</el-button>
+        <div class="grid-test">
+            <div class="item-a">aaa</div>
+            <div class="item-b">bbb</div>
+            <div class="item-c">ccc</div>
+            <div class="item-d">ddd</div>
+        </div>
     </div>
 </template>
 
@@ -47,6 +53,30 @@ export default {
 }
 </script>
 <style scoped lang="less">
-
+    .grid-test{
+        display: grid;
+        grid-template-columns: 50px 50px 50px 50px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        "header header header header"
+        "main main . sidebar"
+        "footer footer footer footer";
+    }
+    .item-a{
+        background-color: aqua;
+        grid-area: header;
+    }
+    .item-b{
+        background-color: antiquewhite;
+        grid-area: main;
+    }
+    .item-c{
+        background-color: burlywood;
+        grid-area: sidebar;
+    }
+    .item-d{
+        background-color: blueviolet;
+        grid-area: footer;
+    }
 </style>
 

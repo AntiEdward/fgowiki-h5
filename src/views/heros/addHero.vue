@@ -19,7 +19,7 @@
                 <el-form-item label="英灵名称 - 日文">
                     <el-input v-model="formData.name_jp"></el-input>
                 </el-form-item>
-                <el-form-item label="英灵名称 - 外文">
+                <el-form-item label="英灵名称 - 原文">
                     <el-input v-model="formData.name_origin"></el-input>
                 </el-form-item>
                 <el-form-item label="英灵性别"></el-form-item>
@@ -121,15 +121,6 @@
                         @click="changeClassName('Shielder')">
                     </div>
                 </div>
-                <el-form-item label="宝具名称 - 中文">
-                    <el-input v-model="formData.phantasm_cn"></el-input>
-                </el-form-item>
-                <el-form-item label="宝具名称 - 日文">
-                    <el-input v-model="formData.phantasm_jp"></el-input>
-                </el-form-item>
-                <el-form-item label="宝具名称 - 外文">
-                    <el-input v-model="formData.phantasm_origin"></el-input>
-                </el-form-item>
                 <el-form-item label="宝具图标"></el-form-item>
                 <div class="class-group">
                     <div 
@@ -145,6 +136,13 @@
                         @click="changePhantasmIcon('Quick')">
                     </div>
                 </div>
+                <el-form-item label="宝具名称 - 中文">
+                    <el-input v-model="formData.phantasm_cn"></el-input>
+                </el-form-item>
+                <el-form-item label="宝具名称 - 原文">
+                    <el-input v-model="formData.phantasm_origin"></el-input>
+                </el-form-item>
+                
                 <el-form-item size="large">
                     <el-button type="primary" @click="onSubmit">立即创建</el-button>
                     <el-button>取消</el-button>
@@ -169,15 +167,14 @@ export default {
                 cost: '',   //cost消耗
                 name_cn: '',    //中文名称
                 name_jp: '',    //日文名称
-                name_origin: '',    //外文名称
+                name_origin: '',    //原文名称
                 gender: '', //性别
                 alignment: '',  //阵营
                 attribute1: '',  //属性1
                 attribute2: '',  //属性2
                 class: '',  //职阶
                 phantasm_cn: '',  //宝具中文
-                phantasm_jp: '',  //宝具日文
-                phantasm_origin: '',  //宝具外文
+                phantasm_origin: '',  //宝具原文
                 phantasm_icon: '',  //宝具图标
             },
             //classSearchClicked: ''
@@ -192,17 +189,16 @@ export default {
             // }
             // console.log(data);
             // JSON.stringify(data)
-            _this.axios.post('/api/add', 
-            _this.formData
-            // JSON.stringify(data), 
-            // {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
-            )
+            _this.axios.post('/api/add', _this.formData)
             .then(res => {
-                console.log(res)
+                // console.log(res)
+                if(res.data.msg === 'ok'){
+                    _this.$message({
+                        message: '添加成功',
+                        type: 'success'
+                    });
+                }
             })
-            // _this.axios.get('/api/test').then(res => {
-            //     console.log(res.data)
-            // })
         },
         //修改職階圖標
         changeClassName(name){
@@ -227,15 +223,7 @@ export default {
 
 <style scoped lang="less">
     @import '../../assets/common.less';
-    .class-group{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
-    .icon-checked{
-        border: 2px solid #ffc500;
-    }
+    
     .test{
         background-image: url('../../assets/common/AlterEgo-C.png')
     }
