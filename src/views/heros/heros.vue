@@ -7,6 +7,7 @@
             <div class="hero-item-name">真名</div>
             <div class="hero-item-class">职阶</div>
             <div class="hero-item-phantasm">宝具</div>
+            <div class="hero-item-button">编辑</div>
         </div>
         <div class="hero-list">
             <div class="hero-item" v-for="(item) in listData" v-bind:key="item.hero_id">
@@ -25,8 +26,13 @@
                 <div class="hero-item-phantasm">
                     <img class="hero-item-img" :src="item.phantasm_icon_src">
                 </div>
-                
+                <div class="hero-item-button">
+                    <el-button @click="jumpToEdit(item.hero_id)">编辑</el-button>
+                </div>
             </div>
+        </div>
+        <div>
+            <el-button @click="getMoreHeroList">加载更多</el-button>
         </div>
     </div>
 </template>
@@ -38,25 +44,47 @@ export default {
     name: '',
     data(){
         return{
-            listData: []
+            listData: [],
+            page: 1
         }
     },
     methods:{
         /**
          * 获取英灵列表
          */
-        getHerosList(){
+        getHerosList(page){
             const _this = this;
-            _this.axios.get('/api/getHeroList').then(res => {
-                
+            _this.axios.get('/api/getHeroList', {
+                params: page
+            }).then(res => {
+                if(res.data.msg !== 'ok'){
+                    return
+                }
                 let data = res.data.data;
-                
                 // console.log(_this.listData)
                 for(let i in data){
-                    data[i].icon_src = config.url_icon_local + data[i].icon_id + '.jpg'
-                    data[i].phantasm_icon_src = config.url_phantasm_icon_local + data[i].phantasm_icon + '.png'
+                    data[i].icon_src = config.url_icon + data[i].icon_id + '.jpg'
+                    data[i].phantasm_icon_src = config.url_phantasm_icon + data[i].phantasm_icon + '.png'
                 }
                 _this.listData = data;
+            })
+        },
+        /**
+         * 加载更多，翻页
+         */
+        getMoreHeroList(){
+            this.page++
+            this.getHerosList(this.page)
+        },
+        /**
+         * 跳转编辑页面
+         */
+        jumpToEdit(id){
+            this.$router.push({
+                name: 'editHero',
+                params: {
+                    hero_id: id
+                }
             })
         }
     }
@@ -79,7 +107,7 @@ export default {
         }
     }
     .hero-item-stars{
-        width: 20%;
+        width: 10%;
     }
     .hero-item-icon{
         width: 20%;
@@ -88,10 +116,13 @@ export default {
         width: 20%;
     }
     .hero-item-class{
-        width: 20%;
+        width: 15%;
     }
     .hero-item-phantasm{
         width: 20%;
+    }
+    .hero-item-button{
+        width: 15%;
     }
     
 </style>

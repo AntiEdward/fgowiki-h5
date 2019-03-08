@@ -146,10 +146,19 @@
                 <el-form-item label="宝具名称 - 原文">
                     <el-input v-model="formData.phantasm_origin"></el-input>
                 </el-form-item>
-                
+                <el-form-item label="红卡数量">
+                    <el-input v-model="formData.card_buster"></el-input>
+                </el-form-item>
+                <el-form-item label="蓝卡数量">
+                    <el-input v-model="formData.card_arts"></el-input>
+                </el-form-item>
+                <el-form-item label="绿卡数量">
+                    <el-input v-model="formData.card_quick"></el-input>
+                </el-form-item>
+
                 <el-form-item size="large">
                     <el-button type="primary" @click="onSubmit">确认修改</el-button>
-                    <el-button>取消</el-button>
+                    <el-button @click="jumpPage('heros')">返回列表</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -163,6 +172,7 @@
 <script>
 export default {
     name: '',
+    // props: ['h_id'],
     data(){
         return{
             search_id: '',
@@ -185,7 +195,19 @@ export default {
             },
         }
     },
+    mounted(){
+        this.heroDetailInit()
+    },
     methods: {
+        /**
+         * 详情页面初始化
+         */
+        heroDetailInit(){
+            const hero_id = this.$route.params.hero_id
+            if(hero_id){
+               this.getHeroDetail(hero_id) 
+            }
+        },
         /**
          * 查询英灵详情
          */
@@ -196,7 +218,7 @@ export default {
             }
             // console.log(data)
             _this.axios.get('/api/getHeroDetail', {
-                params:data
+                params: data
             }).then(res => {
                 const data = res.data.data[0]
                 console.log(data)
@@ -217,6 +239,12 @@ export default {
                     });
                 }
             });
+        },
+        /**
+         * 
+         */
+        jumpPage(name){
+            this.$router.push(name)
         }
     }
 }

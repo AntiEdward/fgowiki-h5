@@ -1,6 +1,9 @@
-const url_icon_web = "http://iseefire.cn:3000/public/images/icon/";
-const url_icon_local = "http://localhost:3000/public/images/icon/";
-const url_phantasm_icon_web = "http://iseefire.cn:3000/public/images/common/";
-const url_phantasm_icon_local = "http://localhost:3000/public/images/common/";
+//服务器地址
+const url_icon = "https://iseefire.cn/public/images/icon/";
+const url_phantasm_icon = "https://iseefire.cn/public/images/common/";
 
-export default {url_icon_web, url_icon_local, url_phantasm_icon_web, url_phantasm_icon_local}
+//本地地址
+// const url_icon = "http://localhost:3000/public/images/icon/";
+// const url_phantasm_icon = "http://localhost:3000/public/images/common/";
+
+export default {url_icon, url_phantasm_icon}

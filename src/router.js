@@ -25,6 +25,11 @@ export default new Router({
       component: home
     },
     {
+      path: '/home',
+      name: 'home',
+      component: home
+    },
+    {
       path: '/heros',
       name: 'heros',
       component: heros
@@ -37,6 +42,12 @@ export default new Router({
     {
       path: '/editHero',
       name: 'editHero',
+      component: editHero
+    },
+    {
+      path: '/editHero/:id',
+      name: 'editHero',
+      // props: true,  //如果 props 被设置为 true，route.params 将会被设置为组件属性。
       component: editHero
     },
   ]

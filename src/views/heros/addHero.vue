@@ -142,6 +142,15 @@
                 <el-form-item label="宝具名称 - 原文">
                     <el-input v-model="formData.phantasm_origin"></el-input>
                 </el-form-item>
+                <el-form-item label="红卡数量">
+                    <el-input v-model="formData.card_buster"></el-input>
+                </el-form-item>
+                <el-form-item label="蓝卡数量">
+                    <el-input v-model="formData.card_arts"></el-input>
+                </el-form-item>
+                <el-form-item label="绿卡数量">
+                    <el-input v-model="formData.card_quick"></el-input>
+                </el-form-item>
                 
                 <el-form-item size="large">
                     <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -176,6 +185,9 @@ export default {
                 phantasm_cn: '',  //宝具中文
                 phantasm_origin: '',  //宝具原文
                 phantasm_icon: '',  //宝具图标
+                card_buster: '',	//红卡数量
+                card_arts: '',	//蓝卡数量
+                card_quick: ''	//绿卡数量
             },
             //classSearchClicked: ''
         }
