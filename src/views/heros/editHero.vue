@@ -229,7 +229,8 @@ export default {
          * 提交表单
          */
         onSubmit(){
-            const _this = this
+            const _this = this;
+             _this.formData.hero_id = Number.parseInt(_this.formData.hero_id);
             _this.axios.post('/api/updateHeroDetail', _this.formData).then(res => {
                 // console.log(res)
                 if(res.data.msg === 'ok'){
@@ -241,7 +242,7 @@ export default {
             });
         },
         /**
-         * 
+         * 跳转页面
          */
         jumpPage(name){
             this.$router.push(name)

@@ -196,11 +196,11 @@ export default {
         onSubmit() {
            
             const _this = this
+            //hero_id转数字类型
+            _this.formData.hero_id = Number.parseInt(_this.formData.hero_id)
             // let data = {
             //     'hero_id' : _this.formData.hero_id
             // }
-            // console.log(data);
-            // JSON.stringify(data)
             _this.axios.post('/api/add', _this.formData)
             .then(res => {
                 // console.log(res)

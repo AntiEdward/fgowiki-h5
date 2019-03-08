@@ -62,8 +62,8 @@ export default {
                 let arrary = []
                 for(let i in data){
                     let item = {
-                        hero_id: data[i].charid, //英灵编号
-                        icon_id: '', //头像id
+                        hero_id: Number.parseInt(data[i].charid), //英灵编号
+                        icon_id: '0' + data[i].charid, //头像id
                         stars: data[i].star,  //星级
                         cost: '',   //cost消耗
                         name_cn: data[i].name,    //中文名称
@@ -79,7 +79,9 @@ export default {
                         phantasm_icon: data[i].tprop,  //宝具图标
                         card_buster: data[i].cardbuster,	//红卡数量
                         card_arts: data[i].cardarts,	//蓝卡数量
-                        card_quick: data[i].cardquick	//绿卡数量
+                        card_quick: data[i].cardquick,	//绿卡数量
+                        lvmax_atk: data[i].lvmax4atk,  //正常满级攻击
+                        lvmax_hp: data[i].lvmax4hp,    //正常满级血量
                     }
                     arrary.push(item)
                 }

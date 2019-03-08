@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <el-button @click="getHerosList">dianwo</el-button>
+        <!-- <el-button @click="getHerosList(1)">dianwo</el-button> -->
         <div class="list-thead">
             <div class="hero-item-stars">星级</div>
             <div class="hero-item-icon">头像</div>
@@ -48,6 +48,10 @@ export default {
             page: 1
         }
     },
+    mounted(){
+        this.page = 1;
+        this.getHerosList(this.page);
+    },
     methods:{
         /**
          * 获取英灵列表
@@ -55,7 +59,9 @@ export default {
         getHerosList(page){
             const _this = this;
             _this.axios.get('/api/getHeroList', {
-                params: page
+                params: {
+                    page: page
+                }
             }).then(res => {
                 if(res.data.msg !== 'ok'){
                     return
@@ -65,8 +71,10 @@ export default {
                 for(let i in data){
                     data[i].icon_src = config.url_icon + data[i].icon_id + '.jpg'
                     data[i].phantasm_icon_src = config.url_phantasm_icon + data[i].phantasm_icon + '.png'
+
+                    _this.listData.push(data[i]);
                 }
-                _this.listData = data;
+                
             })
         },
         /**
