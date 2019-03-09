@@ -6,6 +6,7 @@ import test from './views/test.vue'
 import heros from './views/heros/heros.vue'
 import addHero from './views/heros/addHero.vue'
 import editHero from './views/heros/editHero.vue'
+import fortune from './views/fortune.vue'
 
 
 Vue.use(Router)
@@ -28,6 +29,11 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: home
+    },
+    {
+      path: '/fortune',
+      name: 'fortune',
+      component: fortune
     },
     {
       path: '/heros',

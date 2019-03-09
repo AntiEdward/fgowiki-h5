@@ -2,6 +2,7 @@
     <div class="container">
         <!-- <el-button @click="getHerosList(1)">dianwo</el-button> -->
         <div class="list-thead">
+            <div class="hero-item-id">编号</div>
             <div class="hero-item-stars">星级</div>
             <div class="hero-item-icon">头像</div>
             <div class="hero-item-name">真名</div>
@@ -11,6 +12,9 @@
         </div>
         <div class="hero-list">
             <div class="hero-item" v-for="(item) in listData" v-bind:key="item.hero_id">
+                <div class="hero-item-id">
+                    {{item.hero_id}}
+                </div>
                 <div class="hero-item-stars">
                     {{item.stars}}
                 </div>
@@ -113,6 +117,9 @@ export default {
             width: 50px;
             height: 50px;
         }
+    }
+    .hero-item-id{
+        width: 10%;
     }
     .hero-item-stars{
         width: 10%;

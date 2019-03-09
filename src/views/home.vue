@@ -10,6 +10,9 @@
             <el-button @click="jumpPage('editHero')">编辑英灵</el-button>
         </div>
         <div class="nav-item">
+            <el-button @click="jumpPage('fortune')">抽卡模拟</el-button>
+        </div>
+        <div class="nav-item">
             <el-button @click="jumpPage('test')">测试页面</el-button>
         </div>
         

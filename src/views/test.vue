@@ -3,7 +3,8 @@
         <el-input v-model="id">{{ id }}</el-input>
         <el-button @click="findtest1">列表查询</el-button>
         <el-button @click="findtest2(id)">详情查询</el-button>
-        <el-button @click="findtest3">导入数据</el-button>
+        <el-button @click="findtest3">导入英灵数据</el-button>
+        <el-button @click="findtest4">导入礼装数据</el-button>
         <div class="grid-test">
             <div class="item-a">aaa</div>
             <div class="item-b">bbb</div>
@@ -50,12 +51,12 @@ export default {
                 console.log(data)
             })
         },
-        //
+        //导入英灵
         findtest3() {
             let _this = this
             //https://fgo.umowang.com/servant/ajax?card=&wd=&ids=&sort=12777&o=asc&pn=1
             //https://fgo.umowang.com/servant/ajax?card=&wd=&ids=&sort=12777&o=asc&pn=2
-            let url = 'https://fgo.umowang.com/servant/ajax?card=&wd=&ids=&sort=12777&o=asc&pn=1'
+            let url = 'https://fgo.umowang.com/servant/ajax?card=&wd=&ids=&sort=12777&o=asc&pn=16'
             _this.axios.get(url).then(res => {
                 const data = res.data.data
                 // console.log(data)
@@ -63,7 +64,7 @@ export default {
                 for(let i in data){
                     let item = {
                         hero_id: Number.parseInt(data[i].charid), //英灵编号
-                        icon_id: '0' + data[i].charid, //头像id
+                        icon_id: '' + data[i].charid, //头像id
                         stars: data[i].star,  //星级
                         cost: '',   //cost消耗
                         name_cn: data[i].name,    //中文名称
@@ -97,6 +98,12 @@ export default {
                 })
             })
         },
+        //导入礼装
+        findtest4(){
+            let _this = this;
+            let url = 'https://fgo.umowang.com/servant/ajax?card=&wd=&ids=&sort=12777&o=asc&pn=16'
+            
+        }
     }
 }
 </script>
