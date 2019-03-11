@@ -194,7 +194,6 @@ export default {
     },
     methods:{
         onSubmit() {
-           
             const _this = this
             //hero_id转数字类型
             _this.formData.hero_id = Number.parseInt(_this.formData.hero_id)

@@ -10,6 +10,15 @@
             <el-button @click="jumpPage('editHero')">编辑英灵</el-button>
         </div>
         <div class="nav-item">
+            <el-button @click="jumpPage('craftList')">礼装列表</el-button>
+        </div>
+        <div class="nav-item">
+            <el-button @click="jumpPage('addCraft')">添加礼装</el-button>
+        </div>
+        <div class="nav-item">
+            <el-button @click="jumpPage('editCraft')">编辑礼装</el-button>
+        </div>
+        <div class="nav-item">
             <el-button @click="jumpPage('fortune')">抽卡模拟</el-button>
         </div>
         <div class="nav-item">

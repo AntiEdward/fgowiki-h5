@@ -101,7 +101,45 @@ export default {
         //导入礼装
         findtest4(){
             let _this = this;
-            let url = 'https://fgo.umowang.com/servant/ajax?card=&wd=&ids=&sort=12777&o=asc&pn=16'
+            let url = 'https://fgo.umowang.com/equipment/ajax?wd=&ids=&sort=12958&o=asc&pn=1'
+
+            _this.axios.get(url)
+            .then(res => {
+                const data = res.data.data
+                // console.log(data)
+                let arrary = []
+                for(let i in data){
+                    let item = {
+                        craft_id: Number.parseInt(data[i].equipid), //礼装编号
+                        icon_id: '' + data[i].charid, //头像id
+                        stars: Number.parseInt(data[i].star),  //星级
+                        cost: '',   //cost消耗
+                        name_cn: data[i].name,    //中文名称
+                        name_jp: '',    //日文名称
+                        lvmax_atk: Number.parseInt(data[i].lvmax_atk),  //满级攻击
+                        lvmax_hp: Number.parseInt(data[i].lvmax_hp),  //满级生命
+                        skill_type: '',  //技能类型
+                        skill_describe: data[i].skill_e, //技能描述
+                        pic_id: '', //完整图片id
+                        detail: '', //详细信息
+                    }
+                    arrary.push(item)
+                }
+                return arrary
+            })
+            .then(res => {
+                console.log(res)
+                _this.axios.post('api/addCraft', res).then(res => {
+                    if(res.data.msg === 'ok'){
+                        _this.$message({
+                            message: '添加成功',
+                            type: 'success'
+                        });
+                    }
+                })
+            })
+
+
             
         }
     }
