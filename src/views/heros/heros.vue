@@ -73,7 +73,7 @@ export default {
                 let data = res.data.data;
                 // console.log(_this.listData)
                 for(let i in data){
-                    data[i].icon_src = config.url_icon + data[i].icon_id + '.jpg'
+                    data[i].icon_src = config.url_icon_hero + data[i].icon_id + '.jpg'
                     data[i].phantasm_icon_src = config.url_phantasm_icon + data[i].phantasm_icon + '.png'
 
                     _this.listData.push(data[i]);

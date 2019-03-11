@@ -101,7 +101,9 @@ export default {
         //导入礼装
         findtest4(){
             let _this = this;
-            let url = 'https://fgo.umowang.com/equipment/ajax?wd=&ids=&sort=12958&o=asc&pn=1'
+            // https://fgo.umowang.com/equipment/ajax?wd=&ids=&sort=12958&o=asc&pn=1
+
+            let url = 'https://fgo.umowang.com/equipment/ajax?wd=&ids=&sort=12958&o=asc&pn=20'
 
             _this.axios.get(url)
             .then(res => {
@@ -111,7 +113,7 @@ export default {
                 for(let i in data){
                     let item = {
                         craft_id: Number.parseInt(data[i].equipid), //礼装编号
-                        icon_id: '' + data[i].charid, //头像id
+                        icon_id: '' + data[i].equipid, //头像id
                         stars: Number.parseInt(data[i].star),  //星级
                         cost: '',   //cost消耗
                         name_cn: data[i].name,    //中文名称

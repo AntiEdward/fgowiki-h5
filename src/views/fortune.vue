@@ -17,7 +17,7 @@
         </div>
         <div class="fortune-result-classify">
             <div class="fortune-result-classify-item">
-                <div class="fortune-result-classify-item-title">五星从者</div>
+                <div class="fortune-result-classify-item-title">五星从者：{{ resultData_5_hero.length }} 骑</div>
                 <div class="fortune-result">
                     <div v-for="item in resultData_5_hero" class="fortune-item" v-bind:key="item.hero_id">
                         <img :src="item.icon_src" alt="">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="fortune-result-classify-item">
-                <div class="fortune-result-classify-item-title">五星礼装</div>
+                <div class="fortune-result-classify-item-title">五星礼装：{{ resultData_5_craft.length }} 张</div>
                 <div class="fortune-result">
                     <div v-for="item in resultData_5_craft" class="fortune-item" v-bind:key="item.craft_id">
                         <img :src="item.icon_src" alt="">
@@ -34,7 +34,7 @@
                 
             </div>
             <div class="fortune-result-classify-item">
-                <div class="fortune-result-classify-item-title">四星从者</div>
+                <div class="fortune-result-classify-item-title">四星从者：{{ resultData_4_hero.length }} 骑</div>
                 <div class="fortune-result">
                     <div v-for="item in resultData_4_hero" class="fortune-item" v-bind:key="item.hero_id">
                         <img :src="item.icon_src" alt="">
@@ -43,7 +43,7 @@
                 
             </div>
             <div class="fortune-result-classify-item">
-                <div class="fortune-result-classify-item-title">四星礼装</div>
+                <div class="fortune-result-classify-item-title">四星礼装：{{ resultData_4_craft.length }} 张</div>
                 <div class="fortune-result">
                     <div v-for="item in resultData_4_craft" class="fortune-item" v-bind:key="item.craft_id">
                         <img :src="item.icon_src" alt="">
@@ -52,7 +52,7 @@
                 
             </div>
             <div class="fortune-result-classify-item">
-                <div class="fortune-result-classify-item-title">三星从者</div>
+                <div class="fortune-result-classify-item-title">三星从者：{{ resultData_3_hero.length }} 骑</div>
                 <div class="fortune-result">
                     <div v-for="item in resultData_3_hero" class="fortune-item" v-bind:key="item.hero_id">
                         <img :src="item.icon_src" alt="">
@@ -61,7 +61,7 @@
                 
             </div>
             <div class="fortune-result-classify-item">
-                <div class="fortune-result-classify-item-title">三星礼装</div>
+                <div class="fortune-result-classify-item-title">三星礼装：{{ resultData_3_craft.length }} 张</div>
                 <div class="fortune-result">
                     <div v-for="item in resultData_3_craft" class="fortune-item" v-bind:key="item.craft_id">
                         <img :src="item.icon_src" alt="">
@@ -154,19 +154,31 @@ export default {
 
             }else if(probability > 44 && probability <= 48){
                 //五星礼装
-
-                _this.resultData.push(res[probability])
-                _this.resultData_5_craft.push(res[probability])
+                _this.getCraftListByStars(5).then(res => {
+                    // 10个五星礼装卡池
+                    let probability = Math.floor(Math.random() * 10);  //0 - 9
+                    _this.resultData.push(res[probability])
+                    _this.resultData_5_craft.push(res[probability])
+                })
+                
             }else if(probability > 48 && probability <= 60){
                 //四星礼装
-
-                _this.resultData.push(res[probability])
-                _this.resultData_4_craft.push(res[probability])
+                _this.getCraftListByStars(4).then(res => {
+                    // 50个四星礼装卡池
+                    let probability = Math.floor(Math.random() * 50);  //0 - 49
+                    _this.resultData.push(res[probability])
+                    _this.resultData_4_craft.push(res[probability])
+                })
+                
             }else{
                 //三星礼装
-            
-                _this.resultData.push(res[probability])
-                _this.resultData_3_craft.push(res[probability])
+                _this.getCraftListByStars(3).then(res => {
+                    // 100个三星礼装卡池
+                    let probability = Math.floor(Math.random() * 50);  //0 - 99
+                    _this.resultData.push(res[probability])
+                    _this.resultData_3_craft.push(res[probability])
+                })
+                
             }
             // console.log(result)
         },
@@ -186,7 +198,7 @@ export default {
                     if(res.data.msg === 'ok'){
                         let data = res.data.data
                         for(let i in data){
-                            data[i].icon_src = config.url_icon + data[i].icon_id + '.jpg'
+                            data[i].icon_src = config.url_icon_hero + data[i].icon_id + '.jpg'
                         }
                         resolve(data)
                     }else{
@@ -204,7 +216,7 @@ export default {
             const _this = this;
             return new Promise( (resolve, reject) => {
                 // resolve('sd')
-                _this.axios.get('/api/getHerosListByStars', {
+                _this.axios.get('/api/getCraftListByStars', {
                     params: {
                         stars: stars
                     }
@@ -212,7 +224,7 @@ export default {
                     if(res.data.msg === 'ok'){
                         let data = res.data.data
                         for(let i in data){
-                            data[i].icon_src = config.url_icon + data[i].icon_id + '.jpg'
+                            data[i].icon_src = config.url_icon_craft + data[i].icon_id + '.jpg'
                         }
                         resolve(data)
                     }else{
@@ -224,11 +236,13 @@ export default {
         },
         // 抽爆！
         boom(){
+            this.resultData = []
             this.cardsBox()
             this.totalGold(1)
         },
         // 抽爆！！
         boom10(){
+            this.resultData = []
             let i = 0
             while(i < 10){
                 // this.boom();
