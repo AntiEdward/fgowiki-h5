@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <div class="gif-dance dance"></div>
         <div class="fortune-money">
             <div>圣晶石：{{ gem }} 个</div>
             <div>人民币：{{ money }} 块</div>
@@ -256,6 +257,8 @@ export default {
 </script>
 
 <style scoped lang="less">
+    @import '../assets/common.less';
+
     .fortune-result{
         display: flex;
         justify-content: center;
@@ -285,5 +288,15 @@ export default {
 
             }
         }
+    }
+    .dance{
+        width: 135px;
+        height: 135px;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        position: fixed;
+        top: 0px;
+        right: 0px;
     }
 </style>
