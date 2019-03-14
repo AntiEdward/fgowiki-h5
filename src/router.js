@@ -17,6 +17,10 @@ import editCraft from './views/craft/editCraft.vue'
 
 Vue.use(Router)
 
+/**
+ * 上线版本，部分页面不暴露
+ */
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -28,8 +32,10 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'home',
-      component: home
+      // name: 'home',
+      // component: home
+      name: 'fortune',
+      component: fortune
     },
     {
       path: '/home',
@@ -46,36 +52,36 @@ export default new Router({
       name: 'heros',
       component: heros
     },
-    {
-      path: '/addHero',
-      name: 'addHero',
-      component: addHero
-    },
-    {
-      path: '/editHero',
-      name: 'editHero',
-      component: editHero
-    },
-    {
-      path: '/editHero/:id',
-      name: 'editHero',
-      // props: true,  //如果 props 被设置为 true，route.params 将会被设置为组件属性。
-      component: editHero
-    },
+    // {
+    //   path: '/addHero',
+    //   name: 'addHero',
+    //   component: addHero
+    // },
+    // {
+    //   path: '/editHero',
+    //   name: 'editHero',
+    //   component: editHero
+    // },
+    // {
+    //   path: '/editHero/:id',
+    //   name: 'editHero',
+    //   // props: true,  //如果 props 被设置为 true，route.params 将会被设置为组件属性。
+    //   component: editHero
+    // },
     {
       path: '/craftList',
       name: 'craftList',
       component: craftList
     },
-    {
-      path: '/addCraft',
-      name: 'addCraft',
-      component: addCraft
-    },
-    {
-      path: '/editCraft',
-      name: 'editCraft',
-      component: editCraft
-    },
+    // {
+    //   path: '/addCraft',
+    //   name: 'addCraft',
+    //   component: addCraft
+    // },
+    // {
+    //   path: '/editCraft',
+    //   name: 'editCraft',
+    //   component: editCraft
+    // },
   ]
 })

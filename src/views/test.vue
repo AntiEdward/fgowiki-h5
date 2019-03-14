@@ -5,6 +5,7 @@
         <el-button @click="findtest2(id)">详情查询</el-button>
         <el-button @click="findtest3">导入英灵数据</el-button>
         <el-button @click="findtest4">导入礼装数据</el-button>
+        <el-button @click="expertDB">导出数据</el-button>
         <div class="grid-test">
             <div class="item-a">aaa</div>
             <div class="item-b">bbb</div>
@@ -143,6 +144,53 @@ export default {
 
 
             
+        },
+        /**
+         * 导出数据
+         */
+        expertDB(){
+            let _this = this
+            _this.axios.get('/api/getHeroList', {
+                params: {
+                    page: 1
+                }
+            }).then(res => {
+                
+                let data = res.data.data;
+                let jsonData = '';
+                
+                for(let i in data){
+                    let item = '{' +
+                    '"hero_id":"' + data[i].hero_id + '",' +
+                    '"icon_id":"' + data[i].icon_id + '",' +
+                    '"stars":"' + data[i].stars + '",' +
+                    '"cost":"' + data[i].cost + '",' +
+                    '"name_cn":"' + data[i].name_cn + '",' +
+                    '"name_jp":"' + data[i].name_jp + '",' +
+                    '"name_origin":"' + data[i].name_origin + '",' +
+                    '"gender":"' + data[i].gender + '",' +
+                    '"alignment":"' + data[i].alignment + '",' +
+                    '"attribute1":"' + data[i].attribute1 + '",' +
+                    '"attribute2":"' + data[i].attribute2 + '",' +
+                    '"class":"' + data[i].class + '",' +
+                    '"phantasm_cn":"' + data[i].phantasm_cn + '",' +
+                    '"phantasm_origin":"' + data[i].phantasm_origin + '",' +
+                    '"phantasm_icon":"' + data[i].phantasm_icon + '",' +
+                    '"card_buster":"' + data[i].card_buster + '",' +
+                    '"card_arts":"' + data[i].card_arts + '",' +
+                    '"card_quick":"' + data[i].card_quick + '",' +
+                    '"lvmax_atk":"' + data[i].lvmax_atk + '",' +
+                    '"lvmax_hp":"' + data[i].lvmax_hp + '"' +
+                    '}'
+
+                    jsonData += item
+                }
+                console.log(jsonData)
+                //将处理好的json字符串传递给后端生成json文件
+                _this.axios.post('/api/exportFile', {
+                    data: jsonData
+                })
+            })
         }
     }
 }
